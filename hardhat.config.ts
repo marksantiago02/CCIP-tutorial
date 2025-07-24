@@ -1,6 +1,5 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import "@openzeppelin/hardhat-upgrades";
 import "dotenv/config";
 
 const infuraKey: string = process.env.INFURA_API_KEY as string;
@@ -27,7 +26,7 @@ const config: HardhatUserConfig = {
       accounts: [`0x${privateKey}`],
     },
     ethereum_sepolia: {
-      url: `https://sepolia.infura.io/v3/${infuraKey}`,
+      url: "https://ethereum-sepolia-rpc.publicnode.com",
       accounts: [`0x${privateKey}`],
     },
     arbitrum_one: {
@@ -39,6 +38,11 @@ const config: HardhatUserConfig = {
       url: "https://sepolia-rollup.arbitrum.io/rpc",
       accounts: [`0x${privateKey}`],
       chainId: 421614
+    },
+    avalanche_fuji: {
+      url: "https://avalanche-fuji-c-chain-rpc.publicnode.com",
+      accounts: [`0x${privateKey}`],
+      chainId: 43113,
     },
     hardhat: {
       chainId: 31337,
@@ -61,6 +65,14 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: "https://api-sepolia.arbiscan.io/api",
           browserURL: "https://sepolia.arbiscan.io"
+        }
+      },
+      {
+        network: "avalanche_fuji",
+        chainId: 43113,
+        urls: {
+          apiURL: "https://api-testnet.snowtrace.io/api",
+          browserURL: "https://testnet.snowtrace.io"
         }
       }
     ]
